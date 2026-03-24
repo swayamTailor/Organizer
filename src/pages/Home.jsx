@@ -80,17 +80,6 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-spacing">
-        <h2 className="section-heading" style={{ margin: 0 }}>Categories</h2>
-        <div className="flex flex-wrap gap-3" style={{ marginTop: '1.5rem' }}>
-          <Link to="/events?category=Music" className="pill">Music</Link>
-          <Link to="/events?category=Standup" className="pill">Standup</Link>
-          <Link to="/events?category=Workshop" className="pill">Workshop</Link>
-          <Link to="/events?category=Garba" className="pill">Garba</Link>
-          <Link to="/events?category=Movie" className="pill">Movie</Link>
-        </div>
-      </section>
-
       <section className="section-spacing cta-section">
         <h2 className="cta-title">Ready to get started?</h2>
         <p className="cta-text max-w-md mx-auto">Create an account to book events and manage your tickets in one place.</p>

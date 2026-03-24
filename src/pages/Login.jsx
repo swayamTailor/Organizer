@@ -19,6 +19,8 @@ export default function Login() {
       setError('Password is required');
       return;
     }
+    const userName = email.split('@')[0];
+    localStorage.setItem('user', JSON.stringify({ name: userName, email: email }));
     if (email.includes('admin')) {
       navigate('/admin');
     } else {

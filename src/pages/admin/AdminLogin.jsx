@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import Button from '../components/Button';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/Button';
 
-export default function Register() {
-  const [form, setForm] = useState({ name: '', email: '', password: '' });
+const ADMIN_PASSWORD = 'st2007';
+
+export default function AdminLogin() {
+  const [form, setForm] = useState({ name: '', password: '' });
   const [errors, setErrors] = useState({});
+  const [attempt, setAttempt] = useState(0);
   const navigate = useNavigate();
 
   function validate() {
     const next = {};
     if (!form.name.trim()) next.name = 'Name is required';
-    if (!form.email.trim()) next.email = 'Email is required';
-    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) next.email = 'Enter a valid email';
     if (!form.password) next.password = 'Password is required';
-    else if (form.password.length < 6) next.password = 'Password must be at least 6 characters';
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -21,22 +21,34 @@ export default function Register() {
   function submit(e) {
     e.preventDefault();
     if (!validate()) return;
-    localStorage.setItem('user', JSON.stringify({ name: form.name, email: form.email }));
-    navigate('/user/dashboard');
+
+    if (form.password === ADMIN_PASSWORD) {
+      localStorage.setItem('admin', JSON.stringify({ name: form.name, loggedIn: true }));
+      navigate('/admin');
+    } else {
+      setAttempt(attempt + 1);
+      setErrors({ password: 'Invalid password. Try again.' });
+      setForm({ ...form, password: '' });
+    }
   }
 
   return (
     <div className="page-container auth-wrap min-h-70">
       <div className="auth-card">
         <div className="card-premium p-6" style={{ padding: '2rem' }}>
-          <h1 className="auth-title">Sign up</h1>
-          <p className="auth-subtitle">Create your Organizo account to book events.</p>
+          <h1 className="auth-title">Admin Login</h1>
+          <p className="auth-subtitle">Enter your credentials to access the admin panel.</p>
 
           <form onSubmit={submit} className="auth-form">
+            {attempt > 0 && (
+              <div className="alert-error" style={{ marginBottom: '1.25rem' }}>
+                Access denied. Incorrect password. (Attempts: {attempt})
+              </div>
+            )}
             <div className="form-row">
-              <label htmlFor="reg-name" className="form-label">Name</label>
+              <label htmlFor="admin-name" className="form-label">Name</label>
               <input
-                id="reg-name"
+                id="admin-name"
                 type="text"
                 placeholder="Your name"
                 value={form.name}
@@ -46,23 +58,11 @@ export default function Register() {
               {errors.name && <p className="form-error">{errors.name}</p>}
             </div>
             <div className="form-row">
-              <label htmlFor="reg-email" className="form-label">Email</label>
+              <label htmlFor="admin-password" className="form-label">Password</label>
               <input
-                id="reg-email"
-                type="email"
-                placeholder="you@example.com"
-                value={form.email}
-                onChange={(e) => setForm({ ...form, email: e.target.value })}
-                className={`form-input ${errors.email ? 'input-error' : ''}`}
-              />
-              {errors.email && <p className="form-error">{errors.email}</p>}
-            </div>
-            <div className="form-row">
-              <label htmlFor="reg-password" className="form-label">Password</label>
-              <input
-                id="reg-password"
+                id="admin-password"
                 type="password"
-                placeholder="At least 6 characters"
+                placeholder="Enter password"
                 value={form.password}
                 onChange={(e) => setForm({ ...form, password: e.target.value })}
                 className={`form-input ${errors.password ? 'input-error' : ''}`}
@@ -70,12 +70,12 @@ export default function Register() {
               {errors.password && <p className="form-error">{errors.password}</p>}
             </div>
             <Button type="submit" variant="primary" className="btn-block">
-              Create account
+              Access Admin
             </Button>
           </form>
 
           <p className="auth-link-wrap">
-            Already have an account? <Link to="/login" className="auth-link">Log in</Link>
+            <a href="/" style={{ textDecoration: 'underline', cursor: 'pointer' }}>Back to home</a>
           </p>
         </div>
       </div>

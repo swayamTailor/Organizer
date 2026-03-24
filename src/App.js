@@ -19,6 +19,7 @@ import ManageEvents from './pages/admin/ManageEvents';
 import AddEvent from './pages/admin/AddEvent';
 import ManageUsers from './pages/admin/ManageUsers';
 import ManageBookings from './pages/admin/ManageBookings';
+import AdminLogin from './pages/admin/AdminLogin';
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
           <Route path="/user/profile" element={<Profile />} />
           <Route path="/user/payment" element={<Payment />} />
 
+          <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/events" element={<ManageEvents />} />
           <Route path="/admin/events/add" element={<AddEvent />} />

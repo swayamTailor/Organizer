@@ -59,8 +59,8 @@ export default function UserDashboard() {
           )}
 
           <div className="flex flex-wrap gap-4 mt-10">
-            <Link to="/events" className="cta-btn">Browse events</Link>
-            <Link to="/user/profile" className="btn btn-outline btn-lg">Edit profile</Link>
+            <Link to="/events" className="btn btn-primary">Browse events</Link>
+            <Link to="/user/profile" className="btn btn-outline">Edit profile</Link>
           </div>
         </div>
       </div>

@@ -41,9 +41,17 @@ export default function Sidebar() {
         )}
         <span className="admin-sidebar-theme-label">{theme === 'dark' ? 'Light' : 'Dark'}</span>
       </button>
-      <Link to="/" className="admin-sidebar-back">
-        ← Back to site
-      </Link>
+      <button
+        type="button"
+        onClick={() => {
+          localStorage.removeItem('admin');
+          window.location.href = '/';
+        }}
+        className="admin-sidebar-back"
+        style={{ background: 'transparent', border: 'none', cursor: 'pointer', width: '100%', textAlign: 'left' }}
+      >
+        ← Logout
+      </button>
     </aside>
   );
 }

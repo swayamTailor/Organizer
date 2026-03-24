@@ -22,33 +22,33 @@ export default function EventDetails() {
 
   return (
     <div className="page-container">
-      <div style={{ maxWidth: '64rem', margin: '0 auto' }}>
-        <Link to="/events" className="back-link">← Back to events</Link>
+      <div style={{ maxWidth: '900px', margin: '0 auto' }}>
+        <Link to="/events" className="back-link" style={{ fontSize: '0.8rem', marginBottom: '1rem' }}>← Back to events</Link>
 
         <div className="card-premium" style={{ overflow: 'hidden' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 0 }}>
-            <div className="event-card-img-wrap" style={{ minHeight: '300px', aspectRatio: 'auto' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div className="event-card-img-wrap" style={{ minHeight: '80px', aspectRatio: '16/9' }}>
               <img src={ev.image} alt={ev.title} className="event-card-img" />
               <span className="event-card-badge">{ev.category}</span>
             </div>
-            <div style={{ padding: '1.5rem', maxWidth: '100%' }}>
-              <h1 className="section-heading" style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{ev.title}</h1>
-              <p className="text-slate-600 leading-relaxed" style={{ marginBottom: '1rem' }}>{ev.description}</p>
-              <dl style={{ marginTop: '1.5rem', marginBottom: 0 }}>
-                <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem' }}>
+            <div style={{ padding: '2rem', maxWidth: '100%' }}>
+              <h1 className="section-heading" style={{ fontSize: '1.25rem', marginBottom: '0.75rem' }}>{ev.title}</h1>
+              <p className="text-slate-600 leading-relaxed" style={{ marginBottom: '0.75rem', fontSize: '0.95rem' }}>{ev.description}</p>
+              <dl style={{ marginTop: '1rem', marginBottom: 0 }}>
+                <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.5rem' }}>
                   <dt className="text-sm font-medium text-slate-500" style={{ width: '4rem' }}>Date</dt>
-                  <dd className="text-slate-800" style={{ margin: 0 }}>{ev.date} at {ev.time}</dd>
+                  <dd className="text-slate-800" style={{ margin: 0, fontSize: '0.9rem' }}>{ev.date} at {ev.time}</dd>
                 </div>
-                <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.75rem' }}>
+                <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '0.5rem' }}>
                   <dt className="text-sm font-medium text-slate-500" style={{ width: '4rem' }}>Venue</dt>
-                  <dd className="text-slate-800" style={{ margin: 0 }}>{ev.venue}</dd>
+                  <dd className="text-slate-800" style={{ margin: 0, fontSize: '0.9rem' }}>{ev.venue}</dd>
                 </div>
                 <div style={{ display: 'flex', gap: '0.75rem' }}>
                   <dt className="text-sm font-medium text-slate-500" style={{ width: '4rem' }}>Price</dt>
-                  <dd className="text-slate-800 font-semibold" style={{ margin: 0 }}>{displayPrice}</dd>
+                  <dd className="text-slate-800 font-semibold" style={{ margin: 0, fontSize: '0.9rem' }}>{displayPrice}</dd>
                 </div>
               </dl>
-              <div style={{ marginTop: '2rem', paddingTop: '1.5rem', borderTop: '1px solid var(--slate-100)', display: 'flex', flexWrap: 'wrap', gap: '0.75rem' }}>
+              <div style={{ marginTop: '1.5rem', paddingTop: '1rem', borderTop: '1px solid var(--slate-100)', display: 'flex', flexWrap: 'wrap', gap: '0.5rem' }}>
                 <Button
                   variant="primary"
                   onClick={() => {
@@ -61,10 +61,11 @@ export default function EventDetails() {
                       window.location.href = '/login?redirect=/events/' + ev.id;
                     }
                   }}
+                  className="btn"
                 >
-                  Register for event
+                  Register
                 </Button>
-                <Button variant="outline" onClick={() => window.history.back()}>
+                <Button variant="outline" onClick={() => window.history.back()} className="btn">
                   Back
                 </Button>
               </div>
