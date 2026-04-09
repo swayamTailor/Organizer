@@ -1,4 +1,4 @@
-import React from 'react';
+ import React from 'react';
 
 /**
  * EMS Logo — Movie ticket-inspired design with vibrant red gradient.

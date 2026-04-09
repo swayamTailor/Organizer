@@ -19,9 +19,9 @@ export default function Navbar() {
   useEffect(() => {
     const loggedInUser = localStorage.getItem('user');
     if (loggedInUser) {
-      setUser(JSON.parse(loggedInUser));
+      setUser(JSON.parse(loggedInUser));  
     }
-  }, [location]);
+  }, [location]); 
 
   function handleLogout() {
     localStorage.removeItem('user');
